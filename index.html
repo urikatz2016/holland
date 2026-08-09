@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇳🇱 Holland Trip 2025 - Family Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #FF6B35;
+            --blue: #004E89;
+            --light-blue: #7EC8E3;
+            --yellow: #FFC947;
+            --green: #3CB371;
+            --dark: #1a1a2e;
+            --card-bg: #ffffff;
+            --body-bg: #f0f4f8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--body-bg);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--blue) 100%);
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=1600') center/cover;
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4rem;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1rem;
+        }
+
+        .hero .dates {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .hero .flag-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .weather-banner {
+            background: linear-gradient(90deg, var(--light-blue), var(--blue));
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .weather-banner a {
+            color: var(--yellow);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 3rem 0 2rem;
+            color: var(--blue);
+        }
+
+        .day-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .day-card.expanded {
+            transform: none;
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-number {
+            background: linear-gradient(135deg, var(--orange), var(--yellow));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .day-date {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .day-summary {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-details {
+            display: none;
+            padding-top: 1.5rem;
+            border-top: 2px dashed #eee;
+            margin-top: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .day-card.expanded .day-details {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .attraction {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--orange);
+        }
+
+        .attraction h4 {
+            color: var(--blue);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .attraction p {
+            color: #555;
+            margin-bottom: 0.8rem;
+        }
+
+        .attraction-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .links-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .link-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .link-map {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .link-web {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .link-tip {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .link-fun {
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        .expand-btn {
+            display: none;
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .day-card.expanded .expand-btn {
+            display: inline-block;
+        }
+
+        .expand-btn:hover {
+            background: var(--blue);
+        }
+
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlights-section {
+            background: linear-gradient(135deg, #fff9e6, #fff3cd);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .highlight-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .highlight-card .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-card h4 {
+            color: var(--blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .fun-facts {
+            background: linear-gradient(135deg, var(--blue), #1a365d);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+            margin: 3rem 0;
+        }
+
+        .fun-facts h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .fact-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .fact-item .emoji {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .packing-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .packing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .packing-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: var(--yellow);
+        }
+
+        .phase-divider {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            position: relative;
+        }
+
+        .phase-divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--orange), transparent);
+        }
+
+        .phase-divider span {
+            background: var(--body-bg);
+            padding: 0 1.5rem;
+            position: relative;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            color: var(--orange);
+        }
+        .weather-widget {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .weather-widget h5 {
+            color: var(--blue);
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .weather-days {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+
+        .weather-day {
+            background: white;
+            border-radius: 10px;
+            padding: 0.6rem 0.8rem;
+            min-width: 70px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .weather-day .temp {
+            font-weight: 700;
+            color: var(--orange);
+            font-size: 1.1rem;
+        }
+
+        .weather-day .low {
+            color: var(--blue);
+            font-size: 0.8rem;
+        }
+
+        .weather-day .icon {
+            font-size: 1.5rem;
+        }
+
+        .weather-day .label {
+            font-size: 0.7rem;
+            color: #666;
+        }
+
+        .weather-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: var(--blue);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .weather-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero .dates {
+                font-size: 1rem;
+                padding: 0.6rem 1.2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .day-card {
+                padding: 1.2rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .day-header {
+                gap: 0.7rem;
+            }
+
+            .day-number {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            .day-title {
+                font-size: 1.2rem;
+            }
+
+            .attraction {
+                padding: 1rem;
+            }
+
+            .attraction-image {
+                max-height: 250px;
+            }
+
+            .links-row {
+                gap: 0.4rem;
+            }
+
+            .link-btn {
+                font-size: 0.8rem;
+                padding: 0.35rem 0.8rem;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .facts-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .packing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phase-divider span {
+                font-size: 1.2rem;
+            }
+
+            .weather-days {
+                gap: 0.3rem;
+            }
+
+            .weather-day {
+                min-width: 55px;
+                padding: 0.4rem 0.5rem;
+            }
+
+            .weather-day .icon {
+                font-size: 1.2rem;
+            }
+
+            .fun-facts h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .flag-emoji {
+                font-size: 2rem;
+            }
+
+            .day-card {
+                padding: 1rem;
+            }
+
+            .day-title {
+                font-size: 1.1rem;
+            }
+
+            .day-summary {
+                font-size: 0.95rem;
+            }
+
+            .facts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="hero-content">
+        <div class="flag-emoji">🇳🇱 🌷 🚲</div>
+        <h1>Holland Family Trip!</h1>
+        <p>הולנד - הרפתקה משפחתית</p>
+        <div class="dates">✦ 11 - 25 באוגוסט 2025 ✦</div>
+    </div>
+</div>
+
+<div class="weather-banner">
+    🌤️ מזג אוויר באוגוסט בהולנד: 17°-23°C | שעות שמש: ~8 שעות ביום | גשם אפשרי - קחו מעיל גשם! 
+    <a href="https://www.accuweather.com/en/nl/apeldoorn/249670/august-weather/249670" target="_blank">צפו בתחזית →</a>
+</div>
+
+<div class="container">
+
+    <h2 class="section-title">תוכנית הטיול</h2>
+
+    <div class="phase-divider"><span>🏡 אפלדורן - Apeldoorn</span></div>
+
+    <!-- Day 1 -->
+    <div class="day-card" data-location="apeldoorn" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">1</div>
+            <div>
+                <div class="day-title">✈️ הגעה והתמקמות</div>
+                <div class="day-date">11/8 - יום שני</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            טיסה LY337 תל אביב → אמסטרדם | לקיחת רכב | נסיעה לאפלדורן
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>✈️ טיסה LY337 → נחיתה ב-Schiphol</h4>
+                <img class="attraction-image" src="images/schiphol-airport.png" alt="Schiphol Airport Amsterdam">
+                <p>נחיתה בשעה 11:00 בשדה התעופה סכיפהול (Schiphol). לקיחת רכב שכור ונסיעה לאפלדורן (~80 דקות).</p>
+                <div class="links-row">
+                    <a href="https://www.google.com/maps/dir/Amsterdam+Airport+Schiphol/Beekstraat+14,+7311+LG+Apeldoorn" target="_blank" class="link-btn link-map">📍 ניווט לדירה</a>
+                    <a href="https://www.schiphol.nl/en/" target="_blank" class="link-btn link-web">🌐 אתר Schiphol</a>
+                </div>
+            </div>
+            <div class="attraction">
+                <h4>🏠 הדירה באפלדורן</h4>
+                <img class="attraction-image" src="images/apeldoorn-apartment.png" alt="Apartment Beekstraat 14 Apeldoorn">
+                <p><strong>כתובת:</strong> Beekstraat 14, Apeldoorn, 7311 LG</p>
+                <p>דירה של שרון ואופיר - במרכז אפלדורן!</p>
+                <div class="links-row">
+                    <a href="https://www.google.com/maps/place/Beekstraat+14,+7311+LG+Apeldoorn" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.accuweather.com/en/nl/apeldoorn/249670/weather-forecast/249670" target="_blank" class="link-btn link-tip">🌤️ מזג אוויר</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-card" data-location="apeldoorn" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">2</div>
+            <div>
+                <div class="day-title">🐒 פארק הקופים - Apenheul</div>
+                <div class="day-date">12/8 - יום שלישי</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            פארק ייחודי בעולם - קופים מסתובבים חופשי בין המבקרים!
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🐒 Apenheul Primate Park</h4>
+                <img class="attraction-image" src="images/apenheul-monkeys.png" alt="Squirrel monkeys at Apenheul Apeldoorn">
+                <p>פארק הקופים הכי מיוחד בעולם! יותר מ-300 קופים מ-30 מינים שונים מסתובבים בחופשיות. תוכלו לראות גורילות, שימפנזים, למורים ועוד. הקופים הקטנים ממש קופצים לידכם!</p>
+                <p>⏰ <strong>שעות פתיחה:</strong> 10:00-17:00</p>
+                <p>💰 <strong>כניסה:</strong> מבוגרים ~€26, ילדים ~€22</p>
+                <div class="links-row">
+                    <a href="https://www.apenheul.nl/en" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
+                    <a href="https://www.google.com/maps/place/Apenheul" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.tripadvisor.com/Attraction_Review-g188578-d244750-Reviews-Apenheul_Primate_Park-Apeldoorn_Gelderland_Province.html" target="_blank" class="link-btn link-tip">⭐ ביקורות</a>
+                    <a href="https://www.youtube.com/results?search_query=apenheul+primate+park" target="_blank" class="link-btn link-fun">🎬 סרטונים</a>
+                </div>
+            </div>
+            <div class="location-badge">📍 J.C. Wilslaan 21, Apeldoorn - 10 דקות מהדירה</div>
+        </div>
+    </div>
+
+    <!-- Day 3 - FIXED: Only Palace Park + Bikes + Picnic -->
+    <div class="day-card" data-location="apeldoorn" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">3</div>
+            <div>
+                <div class="day-title">🏰 ארמון הט לו + אופניים ופיקניק</div>
+                <div class="day-date">13/8 - יום רביעי</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            טיול אופניים בגני הארמון המלכותי Het Loo + פיקניק בפארק המרהיב!
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🏰 Paleis Het Loo & Park</h4>
+                <img class="attraction-image" src="images/het-loo-palace.png" alt="Palace Het Loo baroque gardens Apeldoorn">
+                <p>ארמון מלכותי מרהיב עם גנים בסגנון בארוק! שופץ לאחרונה ונפתח מחדש. הגנים ענקיים ומושלמים לטיול אופניים ופיקניק על הדשא.</p>
+                <p>⏰ <strong>שעות:</strong> 10:00-17:00</p>
+                <p>💰 <strong>כניסה:</strong> מבוגרים ~€17.50, ילדים עד 4 חינם</p>
+                <div class="links-row">
+                    <a href="https://www.paleishetloo.nl/en/" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
+                    <a href="https://www.google.com/maps/place/Paleis+Het+Loo" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.tripadvisor.com/Attraction_Review-g188578-d244749-Reviews-Paleis_Het_Loo-Apeldoorn_Gelderland_Province.html" target="_blank" class="link-btn link-tip">⭐ ביקורות</a>
+                </div>
+            </div>
+            <div class="attraction">
+                <h4>🚴 טיול אופניים בפארק הארמון</h4>
+                <img class="attraction-image" src="images/het-loo-cycling.png" alt="Cycling to Palace Het Loo Apeldoorn">
+                <p>הפארק המלכותי (Paleispark) משתרע על שטח ענק עם שבילי אופניים מוצלים בין עצי אלון ואשור עתיקים. ניתן לשכור אופניים בכניסה לפארק.</p>
+                <p><strong>🧺 פיקניק:</strong> קחו שמיכה ואוכל מהסופר - יש דשאות מושלמים לפיקניק עם נוף לגנים!</p>
+                <p>💡 <strong>טיפ:</strong> בפארק יש גם אילים וצבאים שמסתובבים בחופשיות</p>
+                <div class="links-row">
+                    <a href="https://www.google.com/maps/search/bike+rental+apeldoorn+het+loo" target="_blank" class="link-btn link-map">🚴 השכרת אופניים</a>
+                    <a href="https://www.google.com/maps/search/supermarket+near+Beekstraat+Apeldoorn" target="_blank" class="link-btn link-tip">🛒 סופר קרוב לדירה</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 4 -->
+    <div class="day-card" data-location="utrecht" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">4</div>
+            <div>
+                <div class="day-title">🚂 מוזיאון הרכבות - אוטרכט</div>
+                <div class="day-date">14/8 - יום חמישי</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            Spoorwegmuseum - מוזיאון הרכבות הלאומי! חוויה אינטראקטיבית לכל המשפחה
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🚂 Het Spoorwegmuseum (Railway Museum)</h4>
+                <img class="attraction-image" src="images/spoorwegmuseum.png" alt="Historic steam locomotive Spoorwegmuseum Utrecht">
+                <p>מוזיאון הרכבות הלאומי של הולנד! קטרי קיטור היסטוריים, סימולטורי נהיגה, תערוכות אינטראקטיביות ורכבת הרים קטנה. חוויה מדהימה לילדים ולמבוגרים.</p>
+                <p>⏰ <strong>שעות:</strong> 10:00-17:00</p>
+                <p>💰 <strong>כניסה:</strong> מבוגרים ~€17.50, ילדים (4-12) ~€15</p>
+                <p>🚗 <strong>נסיעה:</strong> ~45 דקות מאפלדורן</p>
+                <div class="links-row">
+                    <a href="https://www.spoorwegmuseum.nl/en/" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
+                    <a href="https://www.google.com/maps/place/Spoorwegmuseum" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.google.com/maps/dir/Beekstraat+14,+7311+LG+Apeldoorn/Spoorwegmuseum+Utrecht" target="_blank" class="link-btn link-map">🚗 ניווט מהדירה</a>
+                    <a href="https://www.tripadvisor.com/Attraction_Review-g188616-d244927-Reviews-Railway_Museum_Het_Spoorwegmuseum-Utrecht.html" target="_blank" class="link-btn link-tip">⭐ ביקורות</a>
+                    <a href="https://www.youtube.com/results?search_query=spoorwegmuseum+utrecht" target="_blank" class="link-btn link-fun">🎬 סרטונים</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 5 -->
+    <div class="day-card" data-location="lelystad" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">5</div>
+            <div>
+                <div class="day-title">🛍️ Batavia Stad - אאוטלט</div>
+                <div class="day-date">15/8 - יום שישי</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            קניות באאוטלט הגדול של הולנד - מותגים בהנחות של 30-70%!
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🛍️ Batavia Stad Fashion Outlet</h4>
+                <img class="attraction-image" src="images/batavia-stad.png" alt="Batavia Stad Fashion Outlet Lelystad">
+                <p>אאוטלט ענק עם יותר מ-250 חנויות! Nike, Adidas, Tommy Hilfiger, Calvin Klein, Levi's, BOSS, Guess ועוד מותגים בהנחות משמעותיות.</p>
+                <p>⏰ <strong>שעות:</strong> 10:00-21:00 (שישי)</p>
+                <p>🚗 <strong>נסיעה:</strong> ~45 דקות מאפלדורן</p>
+                <div class="links-row">
+                    <a href="https://www.bataviastad.nl/en/" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
+                    <a href="https://www.google.com/maps/place/Batavia+Stad+Fashion+Outlet" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.google.com/maps/dir/Beekstraat+14,+7311+LG+Apeldoorn/Batavia+Stad+Fashion+Outlet" target="_blank" class="link-btn link-map">🚗 ניווט</a>
+                    <a href="https://www.bataviastad.nl/en/stores/" target="_blank" class="link-btn link-tip">🏷️ רשימת חנויות</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 6 - Now includes karting & fun activities -->
+    <div class="day-card" data-location="apeldoorn" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">6</div>
+            <div>
+                <div class="day-title">🏎️ יום אקשן באפלדורן!</div>
+                <div class="day-date">16/8 - שבת</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            קארטינג מקורה, לייזר טאג ובאולינג - יום של כיף ואדרנלין!
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🏎️ Indoor Karting</h4>
+                <img class="attraction-image" src="images/karting.png" alt="Indoor Karting go-kart racing">
+                <p>קארטינג מקורה - מירוצים אמיתיים עם קארטים מהירים! כיף לכל המשפחה.</p>
+                <div class="links-row">
+                    <a href="https://www.google.com/maps/search/indoor+karting+apeldoorn" target="_blank" class="link-btn link-map">📍 חפש קארטינג</a>
+                </div>
+            </div>
+            <div class="attraction">
+                <h4>🔫 Laser Tag</h4>
+                <img class="attraction-image" src="images/laser-tag.png" alt="Laser Tag neon arena">
+                <p>לייזר טאג - קרבות צוותים בזירה חשוכה עם מכשולים ואורות ניאון! מי ינצח?</p>
+                <div class="links-row">
+                    <a href="https://www.google.com/maps/search/laser+tag+apeldoorn" target="_blank" class="link-btn link-map">📍 חפש לייזר טאג</a>
+                </div>
+            </div>
+            <div class="attraction">
+                <h4>🎳 Bowling</h4>
+                <img class="attraction-image" src="images/bowling.png" alt="Neon bowling alley">
+                <p>לסיים את היום עם משחק באולינג! כולל אורות, מוזיקה ואוכל.</p>
+                <div class="links-row">
+                    <a href="https://www.google.com/maps/search/bowling+apeldoorn" target="_blank" class="link-btn link-map">📍 באולינג באפלדורן</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="phase-divider"><span>🎢 אפטלינג - Efteling</span></div>
+
+    <!-- Days 7-9 -->
+    <div class="day-card" data-location="kaatsheuvel" onclick="toggleDay(this)" style="border: 3px solid var(--orange); background: linear-gradient(135deg, #fff9e6, #ffffff);">
+        <div class="day-header">
+            <div class="day-number" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); width: 70px; height: 70px; font-size: 1.2rem;">7-9</div>
+            <div>
+                <div class="day-title">🎢 אפטלינג!!! 3 ימים של קסם</div>
+                <div class="day-date">17-19/8 - יום ראשון עד שלישי</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            פארק השעשועים הקסום של הולנד! 3 ימים מלאים של הרפתקאות, רכבות הרים, עולמות אגדה ועוד. לינה במלון Efteling Bosrijk!
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🎢 Efteling Theme Park</h4>
+                <img class="attraction-image" src="images/efteling-logo.png" alt="Efteling logo" style="max-height:150px">
+                <p>פארק השעשועים הגדול ביותר בהולנד ואחד הוותיקים באירופה (1952)! מבוסס על אגדות, סיפורי פנטזיה ומיתולוגיה. עולם קסום לכל המשפחה!</p>
+                <img class="attraction-image" src="images/efteling-python.png" alt="Efteling Python roller coaster loops">
+                <p><strong>🎢 אטרקציות מובילות:</strong></p>
+                <ul style="margin: 0.5rem 1.5rem; color: #555;">
+                    <li><strong>Baron 1898</strong> - רכבת הרים מטורפת עם נפילה חופשית!</li>
+                    <li><strong>Python</strong> - לופים מסחררים</li>
+                    <li><strong>Joris en de Draak</strong> - רכבת הרים מעץ (מירוץ!)</li>
+                    <li><strong>Symbolica</strong> - הרפתקה אינטראקטיבית חדשה</li>
+                    <li><strong>Droomvlucht</strong> - טיסה בחלום (מרהיבה!)</li>
+                    <li><strong>Sprookjesbos</strong> - יער האגדות הקסום</li>
+                    <li><strong>Fata Morgana</strong> - שיט מיסתורי</li>
+                    <li><strong>Max & Moritz</strong> - רכבת לקטנים</li>
+                </ul>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                    <img class="attraction-image" src="images/efteling-tree.png" alt="Efteling talking tree Sprookjesbos" style="margin:0">
+                    <img class="attraction-image" src="images/efteling-fairytale.png" alt="Efteling Hansel and Gretel fairytale forest" style="margin:0">
+                </div>
+                <img class="attraction-image" src="images/efteling-map.png" alt="Efteling park map" style="max-height:500px">
+                <div class="links-row">
+                    <a href="https://www.efteling.com/en" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
+                    <a href="https://www.google.com/maps/place/Efteling" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.efteling.com/en/park/attractions" target="_blank" class="link-btn link-fun">🎢 כל האטרקציות</a>
+                    <a href="https://www.youtube.com/results?search_query=efteling+2024+rides" target="_blank" class="link-btn link-fun">🎬 סרטונים</a>
+                    <a href="https://www.efteling.com/en/park/map" target="_blank" class="link-btn link-tip">🗺️ מפת הפארק</a>
+                </div>
+            </div>
+            <div class="attraction">
+                <h4>🌲 Efteling Bosrijk - הלינה</h4>
+                <img class="attraction-image" src="images/efteling-entrance.png" alt="Efteling Bosrijk castle entrance">
+                <p>לינה בכפר נופש בתוך הפארק! בקתות מקסימות מוקפות יער. כניסה מוקדמת לפארק חצי שעה לפני כולם!</p>
+                <p>💡 <strong>טיפ:</strong> קבלו צמיד כניסה במלון - לא צריך לעמוד בתור בכניסה!</p>
+                <div class="links-row">
+                    <a href="https://www.efteling.com/en/holiday-village-bosrijk" target="_blank" class="link-btn link-web">🌐 Bosrijk</a>
+                    <a href="https://www.google.com/maps/place/Efteling+Bosrijk" target="_blank" class="link-btn link-map">📍 מיקום</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="phase-divider"><span>🌊 אמסטרדם - Amsterdam</span></div>
+
+    <!-- Day 10 -->
+    <div class="day-card" data-location="amsterdam" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">9</div>
+            <div>
+                <div class="day-title">🌊 מעבר לאמסטרדם!</div>
+                <div class="day-date">19/8 - יום שלישי</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            אחרי בוקר אחרון בפארק - נוסעים לאמסטרדם! מלון Inntel Hotels Amsterdam Centre
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🏨 Inntel Hotels Amsterdam Centre</h4>
+                <img class="attraction-image" src="images/inntel-hotel.png" alt="Inntel Hotels Amsterdam Centre entrance">
+                <p>מלון במרכז אמסטרדם! מיקום מושלם ליד התחנה המרכזית - הכל נגיש ברגל או באופניים.</p>
+                <div class="links-row">
+                    <a href="https://www.inntelhotelsamsterdamcentre.nl/en/" target="_blank" class="link-btn link-web">🌐 אתר המלון</a>
+                    <a href="https://www.google.com/maps/place/Inntel+Hotels+Amsterdam+Centre" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.accuweather.com/en/nl/amsterdam/249758/weather-forecast/249758" target="_blank" class="link-btn link-tip">🌤️ מזג אוויר</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 11 -->
+    <div class="day-card" data-location="amsterdam" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">10</div>
+            <div>
+                <div class="day-title">🧀 שוק אלברטקויפ</div>
+                <div class="day-date">20/8 - יום רביעי</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            Albert Cuyp Market - השוק הגדול והכי מפורסם של אמסטרדם!
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🧀 Albert Cuypmarkt</h4>
+                <img class="attraction-image" src="images/albert-cuyp-market.png" alt="Albert Cuyp Market Amsterdam">
+                <p>השוק הרחוב הגדול ביותר בהולנד! יותר מ-260 דוכנים של אוכל, בגדים, גבינות הולנדיות, פרחים, סטרופוואפלס טריים ועוד.</p>
+                <p>⏰ <strong>שעות:</strong> 09:00-17:00 (שני-שבת)</p>
+                <p><strong>🍴 חובה לטעום:</strong></p>
+                <ul style="margin: 0.5rem 1.5rem; color: #555;">
+                    <li>🧇 סטרופוואפל טרי מהדוכן!</li>
+                    <li>🧀 גבינה הולנדית (Gouda, Edam)</li>
+                    <li>🐟 הרינג (Haring) - דג הולנדי מסורתי</li>
+                    <li>🍟 פריטס (Patat) עם מיונז</li>
+                    <li>🍩 Poffertjes (מיני פנקייקים מתוקים)</li>
+                </ul>
+                <div class="links-row">
+                    <a href="https://albertcuypmarkt.amsterdam/" target="_blank" class="link-btn link-web">🌐 אתר השוק</a>
+                    <a href="https://www.google.com/maps/place/Albert+Cuypmarkt" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.tripadvisor.com/Attraction_Review-g188590-d311714-Reviews-Albert_Cuyp_Market-Amsterdam_North_Holland_Province.html" target="_blank" class="link-btn link-tip">⭐ ביקורות</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 12 -->
+    <div class="day-card" data-location="amsterdam" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">11</div>
+            <div>
+                <div class="day-title">🏪 Waterlooplein Market</div>
+                <div class="day-date">21/8 - יום חמישי</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            שוק הפשפשים ההיסטורי של אמסטרדם - וינטג', אנטיקות ואוצרות!
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🏪 Waterloopleinmarkt</h4>
+                <img class="attraction-image" src="images/waterlooplein.png" alt="Waterlooplein flea market Amsterdam">
+                <p>שוק הפשפשים הוותיק של אמסטרדם (מ-1880!). מצאו אוצרות: בגדי וינטג', תקליטים ישנים, אנטיקות, תכשיטים ייחודיים ואומנות רחוב.</p>
+                <p>⏰ <strong>שעות:</strong> 09:00-17:00 (שני-שבת)</p>
+                <div class="links-row">
+                    <a href="https://www.waterloopleinmarkt.nl/" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
+                    <a href="https://www.google.com/maps/place/Waterlooplein+Market" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.google.com/maps/dir/Inntel+Hotels+Amsterdam+Centre/Waterlooplein+Market" target="_blank" class="link-btn link-map">🚶 ניווט מהמלון</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 13 -->
+    <div class="day-card" data-location="amsterdam" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">12</div>
+            <div>
+                <div class="day-title">🌷 שוק הפרחים ושופינג</div>
+                <div class="day-date">22/8 - יום שישי</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            Bloemenmarkt - שוק הפרחים הצף היחיד בעולם! + שופינג באמסטרדם
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🌷 Bloemenmarkt - שוק הפרחים הצף</h4>
+                <img class="attraction-image" src="images/bloemenmarkt.png" alt="Bloemenmarkt floating flower market Amsterdam">
+                <p>שוק הפרחים הצף היחיד בעולם! מאז 1862 על תעלת Singel. פקעות צבעונים, זרעים, סחלבים, כלוני עץ הולנדיים ומזכרות.</p>
+                <div class="links-row">
+                    <a href="https://www.google.com/maps/place/Bloemenmarkt" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.iamsterdam.com/en/see-and-do/shopping/overview-amsterdam-markets/flower-market" target="_blank" class="link-btn link-web">🌐 מידע</a>
+                </div>
+            </div>
+            <div class="attraction">
+                <h4>🛍️ אזורי שופינג מומלצים</h4>
+                <img class="attraction-image" src="images/kalverstraat.png" alt="Kalverstraat shopping street Amsterdam">
+                <ul style="margin: 0.5rem 1.5rem; color: #555;">
+                    <li><strong>Kalverstraat</strong> - רחוב הקניות המרכזי (H&M, Zara, Mango)</li>
+                    <li><strong>De 9 Straatjes</strong> - 9 הרחובות הקטנים (בוטיקים ייחודיים)</li>
+                    <li><strong>P.C. Hooftstraat</strong> - מותגי יוקרה (Louis Vuitton, Chanel)</li>
+                    <li><strong>Magna Plaza</strong> - קניון בבניין דואר היסטורי מרהיב</li>
+                </ul>
+                <div class="links-row">
+                    <a href="https://www.google.com/maps/place/Kalverstraat,+Amsterdam" target="_blank" class="link-btn link-map">📍 Kalverstraat</a>
+                    <a href="https://www.google.com/maps/place/De+9+Straatjes" target="_blank" class="link-btn link-map">📍 9 Straatjes</a>
+                    <a href="https://www.google.com/maps/place/Magna+Plaza" target="_blank" class="link-btn link-map">📍 Magna Plaza</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 14 -->
+    <div class="day-card" data-location="amsterdam" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">13</div>
+            <div>
+                <div class="day-title">📖 בית אנה פרנק</div>
+                <div class="day-date">23/8 - שבת</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            ביקור מרגש בבית אנה פרנק בשעה 13:30 - הזמנה מראש חובה!
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>📖 Anne Frank House</h4>
+                <img class="attraction-image" src="images/anne-frank-house.png" alt="Anne Frank House Prinsengracht 263 Amsterdam">
+                <img class="attraction-image" src="images/anne-frank-portrait.png" alt="Anne Frank writing in her diary">
+                <p>הבית בו הסתתרה אנה פרנק ומשפחתה במשך שנתיים במהלך מלחמת העולם השנייה. Prinsengracht 263. חוויה מרגשת ובלתי נשכחת.</p>
+                <p>⏰ <strong>כניסה:</strong> 13:30 (הזמנה מראש!)</p>
+                <p>⚠️ <strong>חשוב:</strong> הכרטיסים נמכרים מראש ואוזלים תוך דקות! בדקו 6 שבועות לפני.</p>
+                <div class="links-row">
+                    <a href="https://www.annefrank.org/en/museum/" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
+                    <a href="https://www.google.com/maps/place/Anne+Frank+House" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.annefrank.org/en/museum/tickets/" target="_blank" class="link-btn link-tip">🎟️ כרטיסים</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 15 -->
+    <div class="day-card" data-location="amsterdam" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">14</div>
+            <div>
+                <div class="day-title">🎨 רייקסמיוזאום</div>
+                <div class="day-date">24/8 - יום ראשון</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            Rijksmuseum - המוזיאון הלאומי! רמברנדט, ורמיר ויצירות מופת הולנדיות
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🎨 Rijksmuseum</h4>
+                <img class="attraction-image" src="images/rijksmuseum.png" alt="Rijksmuseum Amsterdam building">
+                <img class="attraction-image" src="images/rijksmuseum-vermeer.png" alt="Vermeer The Milkmaid painting at Rijksmuseum">
+                <p>המוזיאון הלאומי של הולנד! "משמר הלילה" של רמברנדט, יצירות של ורמיר, ואוסף עצום של 8,000 פריטי אמנות מהמאות ה-17 עד היום.</p>
+                <p>⏰ <strong>שעות:</strong> 09:00-17:00</p>
+                <p>💰 <strong>כניסה:</strong> מבוגרים €22.50, עד גיל 18 חינם!</p>
+                <p>💡 <strong>טיפ:</strong> ה-I Amsterdam שלט + הגנים של Museumplein - מקום צילום מושלם!</p>
+                <div class="links-row">
+                    <a href="https://www.rijksmuseum.nl/en" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
+                    <a href="https://www.google.com/maps/place/Rijksmuseum" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.rijksmuseum.nl/en/tickets" target="_blank" class="link-btn link-tip">🎟️ כרטיסים</a>
+                    <a href="https://www.google.com/maps/place/Museumplein,+Amsterdam" target="_blank" class="link-btn link-fun">🌳 Museumplein</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 16 -->
+    <div class="day-card" data-location="amsterdam" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">15</div>
+            <div>
+                <div class="day-title">👋 יום אחרון וחזרה</div>
+                <div class="day-date">25/8 - יום שני</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            יום אחרון באמסטרדם - שיט בתעלות, ארוחה אחרונה וחזרה הביתה ✈️
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🚤 יום אחרון באמסטרדם</h4>
+                <img class="attraction-image" src="images/amsterdam-canal-bikes.png" alt="Amsterdam canal with bikes on bridge">
+                <img class="attraction-image" src="images/amsterdam-houses.png" alt="Amsterdam colorful canal houses reflection">
+                <ul style="margin: 0.5rem 1.5rem; color: #555;">
+                    <li>🚤 שיט בתעלות אמסטרדם (~75 דקות, מומלץ!)</li>
+                    <li>🥞 Dutch Pancakes - ארוחת בוקר הולנדית</li>
+                    <li>📷 סיבוב צילומים אחרון בתעלות</li>
+                    <li>🧀 לקנות גבינות וסטרופוואפלים לארץ!</li>
+                    <li>🎁 מזכרות אחרונות - כלוני עץ, מגנטים</li>
+                </ul>
+                <div class="links-row">
+                    <a href="https://www.google.com/maps/search/canal+cruise+amsterdam+central" target="_blank" class="link-btn link-map">🚤 שייט בתעלות</a>
+                    <a href="https://www.google.com/maps/dir/Inntel+Hotels+Amsterdam+Centre/Amsterdam+Airport+Schiphol" target="_blank" class="link-btn link-map">✈️ ניווט לשדה התעופה</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fun Facts Section -->
+    <div class="fun-facts">
+        <h3>🎉 עובדות כיפיות על הולנד</h3>
+        <div class="facts-grid">
+            <div class="fact-item">
+                <div class="emoji">🚲</div>
+                <p>יש יותר אופניים מאנשים! 23 מיליון אופניים ל-17 מיליון אנשים</p>
+            </div>
+            <div class="fact-item">
+                <div class="emoji">🧀</div>
+                <p>הולנד מייצאת 650,000 טון גבינה בשנה - שלישית בעולם!</p>
+            </div>
+            <div class="fact-item">
+                <div class="emoji">🌊</div>
+                <p>26% מהולנד נמצאת מתחת לפני הים</p>
+            </div>
+            <div class="fact-item">
+                <div class="emoji">🌷</div>
+                <p>הולנד מגדלת 80% מפרחי העולם</p>
+            </div>
+            <div class="fact-item">
+                <div class="emoji">🧇</div>
+                <p>סטרופוואפל הומצא ב-1784 בעיר Gouda</p>
+            </div>
+            <div class="fact-item">
+                <div class="emoji">🎡</div>
+                <p>אפטלינג נפתח ב-1952 והוא אחד הפארקים הוותיקים בעולם</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Packing Section -->
+    <div class="packing-section">
+        <h3 class="section-title" style="margin-top:0">🧳 מה לקחת?</h3>
+        <p style="text-align:center; color:#666;">מזג אוויר אוגוסט: 17°-23°C, אפשרות לגשם</p>
+        <div class="packing-grid">
+            <div class="packing-item">🧥 מעיל גשם / מעיל רוח</div>
+            <div class="packing-item">☂️ מטריה קומפקטית</div>
+            <div class="packing-item">👟 נעלי הליכה נוחות</div>
+            <div class="packing-item">🩴 סנדלים לפארקים</div>
+            <div class="packing-item">🧢 כובע שמש</div>
+            <div class="packing-item">🕶️ משקפי שמש</div>
+            <div class="packing-item">🔌 מתאם חשמל (Type C/F)</div>
+            <div class="packing-item">📱 מטען נייד</div>
+            <div class="packing-item">💊 תרופות בסיסיות</div>
+            <div class="packing-item">🎒 תיק גב ליום</div>
+            <div class="packing-item">👕 שכבות - בוקר קריר</div>
+            <div class="packing-item">📷 מצלמה!</div>
+            <div class="packing-item">🩱 בגד ים</div>
+            <div class="packing-item">📖 ספר</div>
+            <div class="packing-item">📱 אייפד</div>
+            <div class="packing-item">🫧 מסטיקים</div>
+        </div>
+    </div>
+
+    <!-- Useful Links -->
+    <div class="highlights-section" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+        <h3 class="section-title" style="margin-top:0">🔗 לינקים שימושיים</h3>
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <div class="emoji">🌤️</div>
+                <h4>מזג אוויר</h4>
+                <a href="https://www.accuweather.com/en/nl/amsterdam/249758/august-weather/249758" target="_blank">תחזית אמסטרדם</a><br>
+                <a href="https://www.accuweather.com/en/nl/apeldoorn/249670/august-weather/249670" target="_blank">תחזית אפלדורן</a>
+            </div>
+            <div class="highlight-card">
+                <div class="emoji">🚗</div>
+                <h4>תחבורה</h4>
+                <a href="https://www.ns.nl/en" target="_blank">רכבות הולנד (NS)</a><br>
+                <a href="https://9292.nl/en" target="_blank">תכנון מסלולים 9292</a>
+            </div>
+            <div class="highlight-card">
+                <div class="emoji">📱</div>
+                <h4>אפליקציות מומלצות</h4>
+                <p>Google Maps</p>
+                <p>9292 (תח"צ הולנד)</p>
+                <p>Efteling App</p>
+                <p>I amsterdam</p>
+            </div>
+            <div class="highlight-card">
+                <div class="emoji">🆘</div>
+                <h4>חירום</h4>
+                <p>משטרה/אמבולנס: <strong>112</strong></p>
+                <p>שגרירות ישראל:<br><strong>070-376-0500</strong></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>🇳🇱 Holland Family Trip 2025 | Made with ❤️</p>
+    <p style="margin-top:0.5rem; font-size:0.85rem; opacity:0.7;">!נסיעה טובה ומהנה</p>
+</footer>
+
+<script>
+    const weatherLocations = {
+        apeldoorn: { name: 'Apeldoorn', lat: 52.21, lon: 5.97 },
+        utrecht: { name: 'Utrecht', lat: 52.09, lon: 5.12 },
+        lelystad: { name: 'Lelystad', lat: 52.52, lon: 5.48 },
+        kaatsheuvel: { name: 'Efteling', lat: 51.65, lon: 5.04 },
+        amsterdam: { name: 'Amsterdam', lat: 52.37, lon: 4.90 }
+    };
+
+    const weatherIcons = ['☀️','⛅','🌤️','🌥️','☁️','🌦️','🌧️'];
+
+    async function injectWeatherWidget(card) {
+        if (card.querySelector('.weather-widget')) return;
+        
+        const location = card.dataset.location;
+        if (!location || !weatherLocations[location]) return;
+        
+        const loc = weatherLocations[location];
+        const details = card.querySelector('.day-details');
+        if (!details) return;
+
+        const widget = document.createElement('div');
+        widget.className = 'weather-widget';
+        widget.innerHTML = `<h5>🌤️ טוען תחזית עבור ${loc.name}...</h5>`;
+        details.appendChild(widget);
+
+        try {
+            const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=Europe/Amsterdam&forecast_days=7`);
+            const data = await res.json();
+            
+            const days = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+            let daysHtml = '';
+            
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(data.daily.time[i]);
+                const dayName = days[date.getDay()];
+                const high = Math.round(data.daily.temperature_2m_max[i]);
+                const low = Math.round(data.daily.temperature_2m_min[i]);
+                const code = data.daily.weathercode[i];
+                let icon = '☀️';
+                if (code >= 61) icon = '🌧️';
+                else if (code >= 51) icon = '🌦️';
+                else if (code >= 3) icon = '☁️';
+                else if (code >= 2) icon = '🌥️';
+                else if (code >= 1) icon = '⛅';
+                
+                daysHtml += `
+                    <div class="weather-day">
+                        <div class="label">${dayName}</div>
+                        <div class="icon">${icon}</div>
+                        <div class="temp">${high}°</div>
+                        <div class="low">${low}°</div>
+                    </div>`;
+            }
+
+            widget.innerHTML = `
+                <h5>🌤️ תחזית 7 ימים - ${loc.name}</h5>
+                <div class="weather-days">${daysHtml}</div>
+                <a class="weather-link" href="https://www.accuweather.com/en/nl/${location}/weather-forecast/" target="_blank">
+                    🔗 תחזית מלאה ב-AccuWeather →
+                </a>
+            `;
+        } catch(e) {
+            widget.innerHTML = `
+                <h5>🌤️ מזג אוויר - ${loc.name}</h5>
+                <p style="color:#555;">אוגוסט: 17°-23°C | אפשרות לגשם קל</p>
+                <a class="weather-link" href="https://www.accuweather.com/en/nl/${location}/weather-forecast/" target="_blank">
+                    🔗 צפו בתחזית המלאה →
+                </a>
+            `;
+        }
+    }
+
+    function toggleDay(card) {
+        const wasExpanded = card.classList.contains('expanded');
+        
+        document.querySelectorAll('.day-card').forEach(c => {
+            c.classList.remove('expanded');
+        });
+        
+        if (!wasExpanded) {
+            card.classList.add('expanded');
+            
+            injectWeatherWidget(card);
+            
+            setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    }
+</script>
+
+</body>
+</html>
