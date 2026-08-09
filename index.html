@@ -489,6 +489,11 @@
         }
 
         @media (max-width: 768px) {
+            .hero {
+                min-height: 45vh;
+                padding: 1.5rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -508,11 +513,18 @@
 
             .section-title {
                 font-size: 1.8rem;
+                margin: 2rem 0 1.5rem;
             }
 
             .day-card {
                 padding: 1.2rem;
                 margin-bottom: 1.2rem;
+                border-radius: 15px;
+            }
+
+            .day-card:hover {
+                transform: none;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             }
 
             .day-header {
@@ -531,10 +543,12 @@
 
             .attraction {
                 padding: 1rem;
+                border-radius: 12px;
             }
 
             .attraction-image {
                 max-height: 250px;
+                border-radius: 8px;
             }
 
             .links-row {
@@ -558,6 +572,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .packing-section {
+                padding: 1.5rem;
+            }
+
             .phase-divider span {
                 font-size: 1.2rem;
             }
@@ -575,12 +593,35 @@
                 font-size: 1.2rem;
             }
 
+            .fun-facts {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+
             .fun-facts h3 {
                 font-size: 1.5rem;
+            }
+
+            .highlights-section {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+
+            .weather-banner {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            footer {
+                padding: 1.5rem 1rem;
             }
         }
 
         @media (max-width: 480px) {
+            .hero {
+                min-height: 40vh;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -593,6 +634,12 @@
                 padding: 1rem;
             }
 
+            .day-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+
             .day-title {
                 font-size: 1.1rem;
             }
@@ -603,6 +650,32 @@
 
             .facts-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .weather-day {
+                min-width: 42px;
+                padding: 0.3rem 0.4rem;
+            }
+
+            .weather-day .temp {
+                font-size: 0.9rem;
+            }
+
+            .weather-day .icon {
+                font-size: 1rem;
+            }
+
+            .weather-day .label {
+                font-size: 0.6rem;
+            }
+
+            .link-btn {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .attraction h4 {
+                font-size: 1.05rem;
             }
         }
     </style>
@@ -635,7 +708,7 @@
             <div class="day-number">1</div>
             <div>
                 <div class="day-title">✈️ הגעה והתמקמות</div>
-                <div class="day-date">11/8 - יום שני</div>
+                <div class="day-date">11/8 - יום שלישי</div>
             </div>
         </div>
         <div class="day-summary">
@@ -671,7 +744,7 @@
             <div class="day-number">2</div>
             <div>
                 <div class="day-title">🐒 פארק הקופים - Apenheul</div>
-                <div class="day-date">12/8 - יום שלישי</div>
+                <div class="day-date">12/8 - יום רביעי</div>
             </div>
         </div>
         <div class="day-summary">
@@ -702,7 +775,7 @@
             <div class="day-number">3</div>
             <div>
                 <div class="day-title">🏰 ארמון הט לו + אופניים ופיקניק</div>
-                <div class="day-date">13/8 - יום רביעי</div>
+                <div class="day-date">13/8 - יום חמישי</div>
             </div>
         </div>
         <div class="day-summary">
@@ -742,7 +815,7 @@
             <div class="day-number">4</div>
             <div>
                 <div class="day-title">🚂 מוזיאון הרכבות - אוטרכט</div>
-                <div class="day-date">14/8 - יום חמישי</div>
+                <div class="day-date">14/8 - יום שישי</div>
             </div>
         </div>
         <div class="day-summary">
@@ -774,7 +847,7 @@
             <div class="day-number">5</div>
             <div>
                 <div class="day-title">🛍️ Batavia Stad - אאוטלט</div>
-                <div class="day-date">15/8 - יום שישי</div>
+                <div class="day-date">15/8 - שבת</div>
             </div>
         </div>
         <div class="day-summary">
@@ -804,7 +877,7 @@
             <div class="day-number">6</div>
             <div>
                 <div class="day-title">🏎️ יום אקשן באפלדורן!</div>
-                <div class="day-date">16/8 - שבת</div>
+                <div class="day-date">16/8 - יום ראשון</div>
             </div>
         </div>
         <div class="day-summary">
@@ -847,7 +920,7 @@
             <div class="day-number" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); width: 70px; height: 70px; font-size: 1.2rem;">7-9</div>
             <div>
                 <div class="day-title">🎢 אפטלינג!!! 3 ימים של קסם</div>
-                <div class="day-date">17-19/8 - יום ראשון עד שלישי</div>
+                <div class="day-date">17-19/8 - יום שני עד רביעי</div>
             </div>
         </div>
         <div class="day-summary">
@@ -905,7 +978,7 @@
             <div class="day-number">9</div>
             <div>
                 <div class="day-title">🌊 מעבר לאמסטרדם!</div>
-                <div class="day-date">19/8 - יום שלישי</div>
+                <div class="day-date">19/8 - יום רביעי</div>
             </div>
         </div>
         <div class="day-summary">
@@ -932,7 +1005,7 @@
             <div class="day-number">10</div>
             <div>
                 <div class="day-title">🧀 שוק אלברטקויפ</div>
-                <div class="day-date">20/8 - יום רביעי</div>
+                <div class="day-date">20/8 - יום חמישי</div>
             </div>
         </div>
         <div class="day-summary">
@@ -968,7 +1041,7 @@
             <div class="day-number">11</div>
             <div>
                 <div class="day-title">🏪 Waterlooplein Market</div>
-                <div class="day-date">21/8 - יום חמישי</div>
+                <div class="day-date">21/8 - יום שישי</div>
             </div>
         </div>
         <div class="day-summary">
@@ -996,7 +1069,7 @@
             <div class="day-number">12</div>
             <div>
                 <div class="day-title">🌷 שוק הפרחים ושופינג</div>
-                <div class="day-date">22/8 - יום שישי</div>
+                <div class="day-date">22/8 - שבת</div>
             </div>
         </div>
         <div class="day-summary">
@@ -1037,7 +1110,7 @@
             <div class="day-number">13</div>
             <div>
                 <div class="day-title">📖 בית אנה פרנק</div>
-                <div class="day-date">23/8 - שבת</div>
+                <div class="day-date">23/8 - יום ראשון</div>
             </div>
         </div>
         <div class="day-summary">
@@ -1067,7 +1140,7 @@
             <div class="day-number">14</div>
             <div>
                 <div class="day-title">🎨 רייקסמיוזאום</div>
-                <div class="day-date">24/8 - יום ראשון</div>
+                <div class="day-date">24/8 - יום שני</div>
             </div>
         </div>
         <div class="day-summary">
@@ -1099,7 +1172,7 @@
             <div class="day-number">15</div>
             <div>
                 <div class="day-title">👋 יום אחרון וחזרה</div>
-                <div class="day-date">25/8 - יום שני</div>
+                <div class="day-date">25/8 - יום שלישי</div>
             </div>
         </div>
         <div class="day-summary">
