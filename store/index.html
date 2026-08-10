@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🫧 החנות של בילי - סקווישי!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #FF69B4;
+            --purple: #9B59B6;
+            --mint: #1ABC9C;
+            --yellow: #FFC947;
+            --orange: #FF6B35;
+            --blue: #3498DB;
+            --light-pink: #FFE4F2;
+            --light-purple: #F3E5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(180deg, var(--light-pink) 0%, var(--light-purple) 50%, #E8F8F5 100%);
+            min-height: 100vh;
+            padding-bottom: 90px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '🫧 ✨ 🌈 ⭐ 🫧 ✨ 🌈 ⭐ 🫧 ✨';
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            font-size: 1.5rem;
+            opacity: 0.4;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .header::after {
+            content: '⭐ 🫧 ✨ 🌈 ⭐ 🫧 ✨ 🌈 ⭐ 🫧';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            font-size: 1.5rem;
+            opacity: 0.4;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes cartPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-top: 0.5rem;
+            font-weight: 300;
+        }
+
+        .header .tagline {
+            margin-top: 0.8rem;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 0.4rem 1.5rem;
+            border-radius: 25px;
+            backdrop-filter: blur(5px);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.2rem;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.35);
+            transform: scale(1.05);
+        }
+
+        .info-bar {
+            background: white;
+            text-align: center;
+            padding: 0.8rem;
+            font-size: 0.95rem;
+            color: #555;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .info-bar span {
+            margin: 0 0.8rem;
+        }
+
+        .gallery {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .squishy-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(155, 89, 182, 0.12);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .squishy-card:hover {
+            transform: translateY(-6px) rotate(1deg);
+            box-shadow: 0 15px 35px rgba(155, 89, 182, 0.2);
+        }
+
+        .squishy-card.selected {
+            outline: 3px solid var(--mint);
+            box-shadow: 0 8px 30px rgba(26, 188, 156, 0.3);
+        }
+
+        .squishy-card.selected .select-btn {
+            background: var(--mint);
+            color: white;
+        }
+
+        .squishy-card.selected .select-btn::before {
+            content: '✓';
+        }
+
+        .squishy-card:hover .squishy-img {
+            transform: scale(1.05);
+        }
+
+        .squishy-img-wrap {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .squishy-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .price-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, var(--orange), var(--pink));
+            color: white;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.1rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(255, 105, 180, 0.4);
+        }
+
+        .price-badge.premium {
+            background: linear-gradient(135deg, #FFD700, var(--orange));
+            font-size: 1.2rem;
+            box-shadow: 0 3px 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .price-badge.budget {
+            background: linear-gradient(135deg, var(--mint), var(--blue));
+        }
+
+        .select-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.2s;
+            z-index: 2;
+        }
+
+        .select-btn::before {
+            content: '+';
+            color: #999;
+        }
+
+        .squishy-card.selected .select-btn::before {
+            color: white;
+        }
+
+        .squishy-info {
+            padding: 0.8rem 1rem 1rem;
+            text-align: center;
+        }
+
+        .squishy-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--purple);
+        }
+
+        .squishy-stars {
+            margin-top: 0.3rem;
+            font-size: 0.8rem;
+        }
+
+        /* Shopping Cart Bar */
+        .cart-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 0.8rem 1.5rem;
+            box-shadow: 0 -5px 30px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-bar.empty {
+            transform: translateY(100%);
+        }
+
+        .cart-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cart-icon {
+            font-size: 1.8rem;
+            position: relative;
+        }
+
+        .cart-icon .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: var(--pink);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-icon.pop {
+            animation: cartPop 0.3s ease;
+        }
+
+        .cart-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-items-text {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .cart-total {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.3rem;
+            color: var(--orange);
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, var(--mint), #16a085);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(26, 188, 156, 0.3);
+        }
+
+        .checkout-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(26, 188, 156, 0.4);
+        }
+
+        /* Checkout Modal */
+        .checkout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .checkout-modal.active {
+            display: flex;
+        }
+
+        .checkout-content {
+            background: white;
+            border-radius: 25px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .checkout-content h2 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--purple);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkout-items {
+            list-style: none;
+            margin: 1rem 0;
+            text-align: right;
+        }
+
+        .checkout-items li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .checkout-items li img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .checkout-item-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .checkout-item-price {
+            font-family: 'Fredoka One', cursive;
+            color: var(--orange);
+        }
+
+        .checkout-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--purple);
+        }
+
+        .checkout-total-label {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .checkout-total-price {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            color: var(--orange);
+        }
+
+        .confirm-btn {
+            margin-top: 1.5rem;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 30px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 5px 20px rgba(155, 89, 182, 0.3);
+        }
+
+        .confirm-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #f0f0f0;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Success Screen */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-screen.active {
+            display: block;
+        }
+
+        .success-screen .emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-screen h2 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--mint);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-screen p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(255,255,255,0.15);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            transition: background 0.2s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .lightbox-price {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--orange), var(--pink));
+            color: white;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            padding: 0.5rem 2rem;
+            border-radius: 25px;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: rgba(255,255,255,0.15);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            transition: background 0.2s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .lightbox-prev { right: 1.5rem; }
+        .lightbox-next { left: 1.5rem; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.2rem; }
+            .header .subtitle { font-size: 1.1rem; }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 0.8rem;
+            }
+
+            .squishy-img { height: 160px; }
+            .squishy-card { border-radius: 15px; }
+            .squishy-card:hover { transform: none; }
+            .price-badge { font-size: 0.95rem; padding: 0.25rem 0.6rem; }
+            .squishy-info { padding: 0.5rem 0.6rem 0.7rem; }
+            .squishy-name { font-size: 0.85rem; }
+            .select-btn { width: 28px; height: 28px; font-size: 0.85rem; }
+
+            .cart-bar { padding: 0.6rem 1rem; }
+            .cart-total { font-size: 1.1rem; }
+            .checkout-btn { padding: 0.6rem 1.5rem; font-size: 1rem; }
+
+            .checkout-content { padding: 1.5rem; border-radius: 20px; }
+            .checkout-content h2 { font-size: 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.8rem; }
+            .gallery { gap: 0.7rem; }
+            .squishy-img { height: 130px; }
+            .price-badge { font-size: 0.85rem; top: 8px; left: 8px; }
+            .select-btn { width: 26px; height: 26px; top: 8px; right: 8px; }
+            .cart-info { gap: 0.5rem; }
+            .cart-icon { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🫧 החנות של בילי 🫧</h1>
+    <div class="subtitle">סקווישי מהממים לכל טעם!</div>
+    <div class="tagline">בחרו את הסקווישי שלכם ולחצו צ'קאאוט 🛒</div>
+    <br>
+    <a href="../index.html" class="back-link">🏠 חזרה לתוכנית הטיול</a>
+</div>
+
+<div class="info-bar">
+    <span>💰 מחירים: 1-11 ₪</span>
+    <span>🫧 37 סקווישי במלאי!</span>
+    <span>👆 לחצו לבחירה</span>
+</div>
+
+<div class="gallery" id="gallery"></div>
+
+<!-- Shopping Cart Bar -->
+<div class="cart-bar empty" id="cart-bar">
+    <div class="cart-info">
+        <div class="cart-icon" id="cart-icon">
+            🛒
+            <span class="cart-count" id="cart-count">0</span>
+        </div>
+        <div class="cart-details">
+            <span class="cart-items-text" id="cart-items-text">0 פריטים בעגלה</span>
+            <span class="cart-total" id="cart-total">₪0</span>
+        </div>
+    </div>
+    <button class="checkout-btn" onclick="openCheckout()">🛍️ צ'קאאוט</button>
+</div>
+
+<!-- Checkout Modal -->
+<div class="checkout-modal" id="checkout-modal">
+    <div class="checkout-content" id="checkout-content">
+        <button class="close-modal" onclick="closeCheckout()">✕</button>
+        <div id="checkout-form">
+            <h2>🛒 עגלת הקניות</h2>
+            <ul class="checkout-items" id="checkout-items"></ul>
+            <div class="checkout-total-row">
+                <span class="checkout-total-label">סה"כ לתשלום:</span>
+                <span class="checkout-total-price" id="checkout-total-price">₪0</span>
+            </div>
+            <button class="confirm-btn" onclick="completePurchase()">🎉 אישור הזמנה!</button>
+        </div>
+        <div class="success-screen" id="success-screen">
+            <div class="emoji">🎉🫧✨</div>
+            <h2>ההזמנה בוצעה!</h2>
+            <p>הסקווישי שלכם בדרך אליכם!</p>
+            <p style="margin-top:1rem; font-size: 2rem;">🥳🫧🌈</p>
+            <button class="confirm-btn" style="margin-top:1.5rem; background: linear-gradient(135deg, var(--mint), var(--blue));" onclick="closeCheckout()">סגירה</button>
+        </div>
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(-1)">‹</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(1)">›</button>
+    <div class="lightbox-price" id="lightbox-price"></div>
+</div>
+
+<script>
+    const squishies = [
+        { img: "PHOTO-2026-08-10-18-23-08.jpg", price: 5, stars: 4 },
+        { img: "PHOTO-2026-08-10-18-23-08 2.jpg", price: 4, stars: 4 },
+        { img: "PHOTO-2026-08-10-18-23-08 3.jpg", price: 6, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-08 4.jpg", price: 3, stars: 3 },
+        { img: "PHOTO-2026-08-10-18-23-09.jpg", price: 9, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-09 2.jpg", price: 5, stars: 4 },
+        { img: "PHOTO-2026-08-10-18-23-09 3.jpg", price: 7, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-10.jpg", price: 4, stars: 4 },
+        { img: "PHOTO-2026-08-10-18-23-10 2.jpg", price: 6, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-10 3.jpg", price: 2, stars: 3 },
+        { img: "PHOTO-2026-08-10-18-23-10 4.jpg", price: 10, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-10 5.jpg", price: 5, stars: 4 },
+        { img: "PHOTO-2026-08-10-18-23-10 6.jpg", price: 7, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-11.jpg", price: 3, stars: 3 },
+        { img: "PHOTO-2026-08-10-18-23-11 2.jpg", price: 8, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-11 3.jpg", price: 4, stars: 4 },
+        { img: "PHOTO-2026-08-10-18-23-11 4.jpg", price: 6, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-11 5.jpg", price: 1, stars: 2 },
+        { img: "PHOTO-2026-08-10-18-23-12.jpg", price: 5, stars: 4 },
+        { img: "PHOTO-2026-08-10-18-23-12 2.jpg", price: 11, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-12 3.jpg", price: 4, stars: 4 },
+        { img: "PHOTO-2026-08-10-18-23-12 4.jpg", price: 6, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-12 5.jpg", price: 3, stars: 3 },
+        { img: "PHOTO-2026-08-10-18-23-13.jpg", price: 7, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-13 2.jpg", price: 5, stars: 4 },
+        { img: "PHOTO-2026-08-10-18-23-13 3.jpg", price: 9, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-13 4.jpg", price: 2, stars: 3 },
+        { img: "PHOTO-2026-08-10-18-23-13 5.jpg", price: 6, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-13 6.jpg", price: 4, stars: 4 },
+        { img: "PHOTO-2026-08-10-18-23-14 2.jpg", price: 5, stars: 4 },
+        { img: "PHOTO-2026-08-10-18-23-14 3.jpg", price: 3, stars: 3 },
+        { img: "PHOTO-2026-08-10-18-23-14 4.jpg", price: 7, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-14 6.jpg", price: 6, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-14 7.jpg", price: 8, stars: 5 },
+        { img: "PHOTO-2026-08-10-18-23-14 8.jpg", price: 4, stars: 4 },
+        { img: "210EA227-7765-4651-BC20-D43188FED62B.JPG", price: 11, stars: 5 },
+        { img: "FA3BBCBE-6598-4147-AFA6-F72D713570CE.JPG", price: 9, stars: 5 },
+    ];
+
+    const cart = new Set();
+
+    function getPriceClass(price) {
+        if (price >= 8) return 'premium';
+        if (price <= 2) return 'budget';
+        return '';
+    }
+
+    function getStars(count) {
+        return '⭐'.repeat(count);
+    }
+
+    function renderGallery() {
+        const gallery = document.getElementById('gallery');
+        gallery.innerHTML = squishies.map((s, i) => `
+            <div class="squishy-card ${cart.has(i) ? 'selected' : ''}" onclick="toggleSelect(${i})" id="card-${i}">
+                <div class="squishy-img-wrap">
+                    <img class="squishy-img" src="${s.img}" alt="סקוישי #${i+1}">
+                    <div class="price-badge ${getPriceClass(s.price)}">₪${s.price}</div>
+                    <div class="select-btn"></div>
+                </div>
+                <div class="squishy-info">
+                    <div class="squishy-name">סקווישי #${i+1}</div>
+                    <div class="squishy-stars">${getStars(s.stars)}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function toggleSelect(index) {
+        if (cart.has(index)) {
+            cart.delete(index);
+        } else {
+            cart.add(index);
+        }
+        updateCard(index);
+        updateCart();
+    }
+
+    function updateCard(index) {
+        const card = document.getElementById('card-' + index);
+        if (cart.has(index)) {
+            card.classList.add('selected');
+        } else {
+            card.classList.remove('selected');
+        }
+    }
+
+    function updateCart() {
+        const count = cart.size;
+        const total = Array.from(cart).reduce((sum, i) => sum + squishies[i].price, 0);
+        
+        document.getElementById('cart-count').textContent = count;
+        document.getElementById('cart-items-text').textContent = count + ' פריטים בעגלה';
+        document.getElementById('cart-total').textContent = '₪' + total;
+
+        const bar = document.getElementById('cart-bar');
+        if (count > 0) {
+            bar.classList.remove('empty');
+        } else {
+            bar.classList.add('empty');
+        }
+
+        const icon = document.getElementById('cart-icon');
+        icon.classList.remove('pop');
+        void icon.offsetWidth;
+        icon.classList.add('pop');
+    }
+
+    function openCheckout() {
+        if (cart.size === 0) return;
+
+        const items = document.getElementById('checkout-items');
+        const total = Array.from(cart).reduce((sum, i) => sum + squishies[i].price, 0);
+
+        items.innerHTML = Array.from(cart).sort((a,b) => a-b).map(i => `
+            <li>
+                <div class="checkout-item-info">
+                    <img src="${squishies[i].img}" alt="">
+                    <span>סקווישי #${i+1}</span>
+                </div>
+                <span class="checkout-item-price">₪${squishies[i].price}</span>
+            </li>
+        `).join('');
+
+        document.getElementById('checkout-total-price').textContent = '₪' + total;
+        document.getElementById('checkout-form').style.display = 'block';
+        document.getElementById('success-screen').classList.remove('active');
+        document.getElementById('checkout-modal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCheckout() {
+        document.getElementById('checkout-modal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function completePurchase() {
+        const items = Array.from(cart).sort((a,b) => a-b);
+        const total = items.reduce((sum, i) => sum + squishies[i].price, 0);
+        
+        let msg = '🫧 הזמנה חדשה מהחנות של בילי!\n\n';
+        items.forEach(i => {
+            msg += `• סקווישי #${i+1} - ₪${squishies[i].price}\n`;
+        });
+        msg += `\n💰 סה"כ: ₪${total}`;
+        msg += `\n\n${items.length} פריטים`;
+
+        const phone = '972559116263';
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank');
+
+        document.getElementById('checkout-form').style.display = 'none';
+        document.getElementById('success-screen').classList.add('active');
+        cart.clear();
+        renderGallery();
+        updateCart();
+    }
+
+    // Lightbox
+    let currentLightbox = 0;
+    function openLightbox(index) {
+        currentLightbox = index;
+        document.getElementById('lightbox-img').src = squishies[index].img;
+        document.getElementById('lightbox-price').textContent = '₪' + squishies[index].price;
+        document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+    }
+    function navigateLightbox(dir) {
+        currentLightbox = (currentLightbox + dir + squishies.length) % squishies.length;
+        document.getElementById('lightbox-img').src = squishies[currentLightbox].img;
+        document.getElementById('lightbox-price').textContent = '₪' + squishies[currentLightbox].price;
+    }
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+        if (e.target === this) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (document.getElementById('lightbox').classList.contains('active')) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(1);
+            if (e.key === 'ArrowRight') navigateLightbox(-1);
+        }
+    });
+
+    // Init
+    renderGallery();
+</script>
+
+</body>
+</html>
