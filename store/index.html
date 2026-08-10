@@ -249,8 +249,7 @@
         }
 
         .squishy-stars {
-            margin-top: 0.3rem;
-            font-size: 0.8rem;
+            display: none;
         }
 
         /* Shopping Cart Bar */
@@ -867,8 +866,145 @@
         }
     });
 
+    // Cloud Storage
+    const BLOB_ID = '019fec6f-307c-726f-a4d2-dc01da9c6362';
+    const BLOB_URL = `https://jsonblob.com/api/jsonBlob/${BLOB_ID}`;
+
+    // Admin Mode
+    let isAdmin = false;
+    if (new URLSearchParams(window.location.search).has('admin')) {
+        const pass = prompt('🔐 סיסמת מנהל:');
+        isAdmin = (pass === 'billythequeen');
+    }
+
+    async function loadPrices() {
+        try {
+            const res = await fetch(BLOB_URL);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.prices && data.prices.length === squishies.length) {
+                    data.prices.forEach((p, i) => { squishies[i].price = p; });
+                }
+            }
+        } catch(e) {
+            console.log('Using default prices');
+        }
+    }
+
+    async function savePrices() {
+        const prices = squishies.map(s => s.price);
+        try {
+            await fetch(BLOB_URL, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prices })
+            });
+        } catch(e) {
+            console.error('Failed to save to cloud', e);
+        }
+    }
+
+    function renderAdmin() {
+        if (!isAdmin) return;
+
+        const adminPanel = document.createElement('div');
+        adminPanel.id = 'admin-panel';
+        adminPanel.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
+            display: none;
+        `;
+
+        let rows = squishies.map((s, i) => `
+            <tr>
+                <td style="padding:0.5rem;"><img src="${s.img}" style="width:50px;height:50px;object-fit:cover;border-radius:8px;"></td>
+                <td style="padding:0.5rem;color:#fff;">סקווישי #${i+1}</td>
+                <td style="padding:0.5rem;">
+                    <input type="number" min="1" max="20" value="${s.price}" 
+                        id="price-input-${i}"
+                        style="width:60px;padding:0.4rem;border-radius:8px;border:2px solid var(--pink);font-size:1rem;text-align:center;font-family:'Fredoka One',cursive;">
+                </td>
+            </tr>
+        `).join('');
+
+        adminPanel.innerHTML = `
+            <div style="max-width:600px;margin:0 auto;background:white;border-radius:20px;padding:2rem;">
+                <h2 style="font-family:'Fredoka One',cursive;color:var(--purple);text-align:center;margin-bottom:1rem;">🔧 ניהול מחירים</h2>
+                <table style="width:100%;border-collapse:collapse;">${rows}</table>
+                <div style="text-align:center;margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                    <button onclick="saveAdminPrices()" style="background:linear-gradient(135deg,var(--mint),#16a085);color:white;border:none;padding:0.8rem 2rem;border-radius:25px;font-family:'Fredoka One',cursive;font-size:1.1rem;cursor:pointer;">💾 שמירה</button>
+                    <button onclick="closeAdmin()" style="background:#eee;color:#555;border:none;padding:0.8rem 2rem;border-radius:25px;font-family:'Fredoka One',cursive;font-size:1.1rem;cursor:pointer;">✕ סגירה</button>
+                    <button onclick="resetPrices()" style="background:#fee;color:#c00;border:none;padding:0.8rem 2rem;border-radius:25px;font-family:'Fredoka One',cursive;font-size:1.1rem;cursor:pointer;">🗑️ איפוס</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(adminPanel);
+
+        const adminBtn = document.createElement('button');
+        adminBtn.textContent = '🔧 ניהול';
+        adminBtn.style.cssText = `
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 0.9rem;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: 0 3px 15px rgba(155,89,182,0.3);
+        `;
+        adminBtn.onclick = () => { adminPanel.style.display = 'block'; };
+        document.body.appendChild(adminBtn);
+    }
+
+    async function saveAdminPrices() {
+        squishies.forEach((s, i) => {
+            const input = document.getElementById('price-input-' + i);
+            if (input) {
+                s.price = parseInt(input.value) || s.price;
+            }
+        });
+        await savePrices();
+        renderGallery();
+        updateCart();
+        alert('המחירים נשמרו לכל המשתמשים! ✓');
+        closeAdmin();
+    }
+
+    function closeAdmin() {
+        document.getElementById('admin-panel').style.display = 'none';
+    }
+
+    async function resetPrices() {
+        if (confirm('לאפס את כל המחירים לברירת מחדל?')) {
+            const defaults = [5,4,6,3,9,5,7,4,6,2,10,5,7,3,8,4,6,1,5,11,4,6,3,7,5,9,2,6,4,5,3,7,6,8,4,11,9];
+            await fetch(BLOB_URL, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prices: defaults })
+            });
+            location.reload();
+        }
+    }
+
     // Init
-    renderGallery();
+    (async function() {
+        await loadPrices();
+        renderGallery();
+        renderAdmin();
+    })();
 </script>
 
 </body>
