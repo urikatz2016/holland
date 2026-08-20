@@ -810,12 +810,42 @@
     </div>
 
     <!-- Day 4 -->
-    <div class="day-card" data-location="utrecht" onclick="toggleDay(this)">
+    <div class="day-card" data-location="lelystad" onclick="toggleDay(this)">
         <div class="day-header">
             <div class="day-number">4</div>
             <div>
-                <div class="day-title">🚂 מוזיאון הרכבות - אוטרכט</div>
+                <div class="day-title">🛍️ Batavia Stad - אאוטלט</div>
                 <div class="day-date">14/8 - יום שישי</div>
+            </div>
+        </div>
+        <div class="day-summary">
+            קניות באאוטלט הגדול של הולנד - מותגים בהנחות של 30-70%!
+        </div>
+        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
+        <div class="day-details">
+            <div class="attraction">
+                <h4>🛍️ Batavia Stad Fashion Outlet</h4>
+                <img class="attraction-image" src="images/batavia-stad.png" alt="Batavia Stad Fashion Outlet Lelystad">
+                <p>אאוטלט ענק עם יותר מ-250 חנויות! Nike, Adidas, Tommy Hilfiger, Calvin Klein, Levi's, BOSS, Guess ועוד מותגים בהנחות משמעותיות.</p>
+                <p>⏰ <strong>שעות:</strong> 10:00-21:00 (שישי)</p>
+                <p>🚗 <strong>נסיעה:</strong> ~45 דקות מאפלדורן</p>
+                <div class="links-row">
+                    <a href="https://www.bataviastad.nl/en/" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
+                    <a href="https://www.google.com/maps/place/Batavia+Stad+Fashion+Outlet" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.google.com/maps/dir/Beekstraat+14,+7311+LG+Apeldoorn/Batavia+Stad+Fashion+Outlet" target="_blank" class="link-btn link-map">🚗 ניווט</a>
+                    <a href="https://www.bataviastad.nl/en/stores/" target="_blank" class="link-btn link-tip">🏷️ רשימת חנויות</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 5 -->
+    <div class="day-card" data-location="utrecht" onclick="toggleDay(this)">
+        <div class="day-header">
+            <div class="day-number">5</div>
+            <div>
+                <div class="day-title">🚂 מוזיאון הרכבות - אוטרכט</div>
+                <div class="day-date">15/8 - שבת</div>
             </div>
         </div>
         <div class="day-summary">
@@ -841,72 +871,26 @@
         </div>
     </div>
 
-    <!-- Day 5 -->
-    <div class="day-card" data-location="lelystad" onclick="toggleDay(this)">
-        <div class="day-header">
-            <div class="day-number">5</div>
-            <div>
-                <div class="day-title">🛍️ Batavia Stad - אאוטלט</div>
-                <div class="day-date">15/8 - שבת</div>
-            </div>
-        </div>
-        <div class="day-summary">
-            קניות באאוטלט הגדול של הולנד - מותגים בהנחות של 30-70%!
-        </div>
-        <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
-        <div class="day-details">
-            <div class="attraction">
-                <h4>🛍️ Batavia Stad Fashion Outlet</h4>
-                <img class="attraction-image" src="images/batavia-stad.png" alt="Batavia Stad Fashion Outlet Lelystad">
-                <p>אאוטלט ענק עם יותר מ-250 חנויות! Nike, Adidas, Tommy Hilfiger, Calvin Klein, Levi's, BOSS, Guess ועוד מותגים בהנחות משמעותיות.</p>
-                <p>⏰ <strong>שעות:</strong> 10:00-21:00 (שישי)</p>
-                <p>🚗 <strong>נסיעה:</strong> ~45 דקות מאפלדורן</p>
-                <div class="links-row">
-                    <a href="https://www.bataviastad.nl/en/" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
-                    <a href="https://www.google.com/maps/place/Batavia+Stad+Fashion+Outlet" target="_blank" class="link-btn link-map">📍 Google Maps</a>
-                    <a href="https://www.google.com/maps/dir/Beekstraat+14,+7311+LG+Apeldoorn/Batavia+Stad+Fashion+Outlet" target="_blank" class="link-btn link-map">🚗 ניווט</a>
-                    <a href="https://www.bataviastad.nl/en/stores/" target="_blank" class="link-btn link-tip">🏷️ רשימת חנויות</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Day 6 - Now includes karting & fun activities -->
-    <div class="day-card" data-location="apeldoorn" onclick="toggleDay(this)">
+    <!-- Day 6 - Relax in Garderen -->
+    <div class="day-card" data-location="garderen" onclick="toggleDay(this)">
         <div class="day-header">
             <div class="day-number">6</div>
             <div>
-                <div class="day-title">🏎️ יום אקשן באפלדורן!</div>
+                <div class="day-title">🌲 יום מנוחה בגרדרן</div>
                 <div class="day-date">16/8 - יום ראשון</div>
             </div>
         </div>
         <div class="day-summary">
-            קארטינג מקורה, לייזר טאג ובאולינג - יום של כיף ואדרנלין!
+            יום רגוע ומנוחה בכפר גרדרן - טבע, שלווה ומנגל
         </div>
         <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
         <div class="day-details">
             <div class="attraction">
-                <h4>🏎️ Indoor Karting</h4>
-                <img class="attraction-image" src="images/karting.png" alt="Indoor Karting go-kart racing">
-                <p>קארטינג מקורה - מירוצים אמיתיים עם קארטים מהירים! כיף לכל המשפחה.</p>
+                <h4>🌲 Relax in Garderen</h4>
+                <p>יום מנוחה ורגיעה בכפר הציורי גרדרן. טיולים קצרים ביער, אווירה הולנדית שלווה, ומנגל משפחתי.</p>
+                <p>🌳 <strong>פעילויות:</strong> הליכה ביער, רכיבת אופניים, מנוחה בדירה</p>
                 <div class="links-row">
-                    <a href="https://www.google.com/maps/search/indoor+karting+apeldoorn" target="_blank" class="link-btn link-map">📍 חפש קארטינג</a>
-                </div>
-            </div>
-            <div class="attraction">
-                <h4>🔫 Laser Tag</h4>
-                <img class="attraction-image" src="images/laser-tag.png" alt="Laser Tag neon arena">
-                <p>לייזר טאג - קרבות צוותים בזירה חשוכה עם מכשולים ואורות ניאון! מי ינצח?</p>
-                <div class="links-row">
-                    <a href="https://www.google.com/maps/search/laser+tag+apeldoorn" target="_blank" class="link-btn link-map">📍 חפש לייזר טאג</a>
-                </div>
-            </div>
-            <div class="attraction">
-                <h4>🎳 Bowling</h4>
-                <img class="attraction-image" src="images/bowling.png" alt="Neon bowling alley">
-                <p>לסיים את היום עם משחק באולינג! כולל אורות, מוזיקה ואוכל.</p>
-                <div class="links-row">
-                    <a href="https://www.google.com/maps/search/bowling+apeldoorn" target="_blank" class="link-btn link-map">📍 באולינג באפלדורן</a>
+                    <a href="https://www.google.com/maps/place/Garderen" target="_blank" class="link-btn link-map">📍 Google Maps</a>
                 </div>
             </div>
         </div>
@@ -1040,37 +1024,24 @@
         <div class="day-header">
             <div class="day-number">11</div>
             <div>
-                <div class="day-title">🏪 Waterlooplein + מוזיאון הגרפיטי</div>
+                <div class="day-title">🏎️ אקשן באמסטרדם - Race Planet!</div>
                 <div class="day-date">21/8 - יום שישי</div>
             </div>
         </div>
         <div class="day-summary">
-            שוק הפשפשים ההיסטורי + Street Art Museum Amsterdam - אמנות רחוב במספנה ענקית!
+            יום אדרנלין! גו-קארט ולייזר טאג ב-Race Planet אמסטרדם
         </div>
         <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
         <div class="day-details">
             <div class="attraction">
-                <h4>🏪 Waterloopleinmarkt</h4>
-                <img class="attraction-image" src="images/waterlooplein.png" alt="Waterlooplein flea market Amsterdam">
-                <p>שוק הפשפשים הוותיק של אמסטרדם (מ-1880!). מצאו אוצרות: בגדי וינטג', תקליטים ישנים, אנטיקות, תכשיטים ייחודיים ואומנות רחוב.</p>
-                <p>⏰ <strong>שעות:</strong> 09:00-17:00 (שני-שבת)</p>
+                <h4>🏎️ Race Planet Amsterdam</h4>
+                <p>גו-קארט מקורה ולייזר טאג במתחם Race Planet באמסטרדם! מסלולים מהירים, תחרויות חמות ואדרנלין לכל המשפחה.</p>
+                <p>🏁 <strong>פעילויות:</strong> Go-Kart + Laser Tag</p>
+                <p>📍 <strong>מיקום:</strong> אמסטרדם</p>
                 <div class="links-row">
-                    <a href="https://www.waterloopleinmarkt.nl/" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
-                    <a href="https://www.google.com/maps/place/Waterlooplein+Market" target="_blank" class="link-btn link-map">📍 Google Maps</a>
-                    <a href="https://www.google.com/maps/dir/Inntel+Hotels+Amsterdam+Centre/Waterlooplein+Market" target="_blank" class="link-btn link-map">🚶 ניווט מהמלון</a>
-                </div>
-            </div>
-            <div class="attraction">
-                <h4>🎨 Street Art Museum Amsterdam (SAMA)</h4>
-                <img class="attraction-image" src="images/street-art-museum.png" alt="Street Art Museum Amsterdam industrial hall with colorful murals">
-                <p>מוזיאון אמנות הרחוב של אמסטרדם! ממוקם במבנה תעשייתי ענק (מספנה לשעבר) באזור NDSM. תערוכות ענקיות של גרפיטי ואמנות רחוב מאמנים מכל העולם.</p>
-                <p>⏰ <strong>שעות:</strong> 10:00-18:00</p>
-                <p>📍 <strong>מיקום:</strong> NDSM-Plein 1, Amsterdam-Noord</p>
-                <p>💡 <strong>טיפ:</strong> ניתן להגיע בפרי (מעבורת) חינמית מהתחנה המרכזית - חוויה בפני עצמה!</p>
-                <div class="links-row">
-                    <a href="https://www.streetartmuseumamsterdam.com/" target="_blank" class="link-btn link-web">🌐 אתר רשמי</a>
-                    <a href="https://www.google.com/maps/place/Street+Art+Museum+Amsterdam" target="_blank" class="link-btn link-map">📍 Google Maps</a>
-                    <a href="https://www.google.com/maps/dir/Inntel+Hotels+Amsterdam+Centre/Street+Art+Museum+Amsterdam" target="_blank" class="link-btn link-map">🚶 ניווט מהמלון</a>
+                    <a href="https://raceplanet.com/" target="_blank" class="link-btn link-web">🌐 אתר Race Planet</a>
+                    <a href="https://www.google.com/maps/place/Race+Planet+Amsterdam" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.google.com/maps/dir/Inntel+Hotels+Amsterdam+Centre/Race+Planet+Amsterdam" target="_blank" class="link-btn link-map">🚗 ניווט מהמלון</a>
                 </div>
             </div>
         </div>
@@ -1081,18 +1052,28 @@
         <div class="day-header">
             <div class="day-number">12</div>
             <div>
-                <div class="day-title">🌷 שוק הפרחים ושופינג</div>
+                <div class="day-title">🛍️ נורדרמרקט, שוק הפרחים ושופינג</div>
                 <div class="day-date">22/8 - שבת</div>
             </div>
         </div>
         <div class="day-summary">
-            Bloemenmarkt - שוק הפרחים הצף היחיד בעולם! + שופינג באמסטרדם
+            Noordermarkt, Bloemenmarkt ושופינג באמסטרדם - יום של שווקים וקניות!
         </div>
         <button class="expand-btn" onclick="event.stopPropagation(); toggleDay(this.parentElement)">סגור ▲</button>
         <div class="day-details">
             <div class="attraction">
+                <h4>🏪 Noordermarkt - נורדרמרקט</h4>
+                <img class="attraction-image" src="images/noordermarkt.png" alt="Noordermarkt aerial view Amsterdam with Noorderkerk">
+                <p>השוק האורגני והוינטג' הפופולרי של אמסטרדם! סביב כנסיית Noorderkerk. דוכני אוכל, בגדים, אנטיקות ואווירה הולנדית אותנטית.</p>
+                <p>⏰ <strong>שעות:</strong> שבת 09:00-16:00</p>
+                <div class="links-row">
+                    <a href="https://www.google.com/maps/place/Noordermarkt,+Amsterdam" target="_blank" class="link-btn link-map">📍 Google Maps</a>
+                    <a href="https://www.google.com/maps/dir/Inntel+Hotels+Amsterdam+Centre/Noordermarkt,+Amsterdam" target="_blank" class="link-btn link-map">🚶 ניווט מהמלון</a>
+                </div>
+            </div>
+            <div class="attraction">
                 <h4>🌷 Bloemenmarkt - שוק הפרחים הצף</h4>
-                <img class="attraction-image" src="images/bloemenmarkt.png" alt="Bloemenmarkt floating flower market Amsterdam">
+                <img class="attraction-image" src="images/bloemenmarkt-canal.png" alt="Bloemenmarkt floating flower market canal reflection Amsterdam">
                 <p>שוק הפרחים הצף היחיד בעולם! מאז 1862 על תעלת Singel. פקעות צבעונים, זרעים, סחלבים, כלוני עץ הולנדיים ומזכרות.</p>
                 <div class="links-row">
                     <a href="https://www.google.com/maps/place/Bloemenmarkt" target="_blank" class="link-btn link-map">📍 Google Maps</a>
@@ -1100,8 +1081,7 @@
                 </div>
             </div>
             <div class="attraction">
-                <h4>🛍️ אזורי שופינג מומלצים</h4>
-                <img class="attraction-image" src="images/kalverstraat.png" alt="Kalverstraat shopping street Amsterdam">
+                <h4>🛍️ שופינג באמסטרדם</h4>
                 <ul style="margin: 0.5rem 1.5rem; color: #555;">
                     <li><strong>Kalverstraat</strong> - רחוב הקניות המרכזי (H&M, Zara, Mango)</li>
                     <li><strong>De 9 Straatjes</strong> - 9 הרחובות הקטנים (בוטיקים ייחודיים)</li>
@@ -1317,6 +1297,7 @@
         apeldoorn: { name: 'Apeldoorn', lat: 52.21, lon: 5.97 },
         utrecht: { name: 'Utrecht', lat: 52.09, lon: 5.12 },
         lelystad: { name: 'Lelystad', lat: 52.52, lon: 5.48 },
+        garderen: { name: 'Garderen', lat: 52.23, lon: 5.72 },
         kaatsheuvel: { name: 'Efteling', lat: 51.65, lon: 5.04 },
         amsterdam: { name: 'Amsterdam', lat: 52.37, lon: 4.90 }
     };
